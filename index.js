@@ -7,8 +7,16 @@
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
 function trimProperties(obj) {
-  // ✨ implement
+  let newObj = {}
+  for (let key in obj) {
+    if (typeof obj[key] === 'string' ) {
+      newObj[key] = obj[key].trim()
+    } 
+  }
+  return newObj
 }
+
+// console.log(trimProperties({ name: '  jane  ' }))
 
 /**
  * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
@@ -19,8 +27,17 @@ function trimProperties(obj) {
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
 function trimPropertiesMutation(obj) {
-  // ✨ implement
+  for (let key in obj) {
+    if (typeof obj[key] === 'string') {
+      obj[key] = obj[key].trim()
+    }
+  }
+  return obj
 }
+
+// console.log(trimPropertiesMutation({ name: '     jane    ' }))
+
+
 
 /**
  * [Exercise 3] findLargestInteger finds the largest integer in an array of objects { integer: 1 }
@@ -31,8 +48,20 @@ function trimPropertiesMutation(obj) {
  * findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) // returns 3
  */
 function findLargestInteger(integers) {
-  // ✨ implement
+  let largeInt = -Infinity
+
+  for (let i = 0; i < integers.length; i++) {
+    const currentInt = integers[i].integer
+
+    if(currentInt > largeInt) {
+      largeInt = currentInt
+    }
+  }
+  return largeInt
 }
+
+// console.log(findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) )
+
 
 class Counter {
   /**
@@ -41,6 +70,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.count = initialNumber
   }
 
   /**
@@ -57,8 +87,23 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+    let currentCount = this.count 
+    if (this.count > 0) {
+       this.count--
+    }
+    return currentCount
   }
 }
+
+/*
+const counter = new Counter(3)
+  console.log(counter.countDown()) // returns 3
+  console.log(counter.countDown()) // returns 2
+  console.log(counter.countDown()) // returns 1
+  console.log(counter.countDown()) // returns 0
+  console.log(counter.countDown()) // returns 0
+*/
+
 
 class Seasons {
   /**
